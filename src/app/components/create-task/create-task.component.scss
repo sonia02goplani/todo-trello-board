@@ -1,0 +1,112 @@
+.create-task-container {
+  margin: 20px;
+  
+  button {
+    margin-bottom: 16px;
+  }
+}
+
+.task-form {
+  max-width: 500px;
+  margin: 20px 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+}
+
+mat-card-header {
+  padding: 16px;
+  
+  mat-card-title {
+    color: #172b4d;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+mat-card-content {
+  padding: 0 16px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button[mat-raised-button] {
+  background-color: #0052cc;
+  color: white;
+  
+  &:hover {
+    background-color: #0747a6;
+  }
+}
+
+button[mat-button] {
+  color: #42526e;
+  
+  &:hover {
+    background-color: #f4f5f7;
+  }
+}
+
+.create-task-dialog {
+  padding: 16px;
+
+  h2 {
+    color: #172b4d;
+    margin: 0 0 20px 0;
+  }
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 400px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 0 0;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button[mat-raised-button] {
+  background-color: #0052cc;
+  
+  &:hover {
+    background-color: #0747a6;
+  }
+}
+
+button[mat-button] {
+  color: #42526e;
+  
+  &:hover {
+    background-color: #f4f5f7;
+  }
+} 

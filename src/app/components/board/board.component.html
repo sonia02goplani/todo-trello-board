@@ -1,0 +1,72 @@
+<div class="board-container">
+  <div class="board-header">
+    <mat-form-field>
+      <mat-label>Filter by User</mat-label>
+      <mat-select (selectionChange)="onUserChange($event.value)">
+        <mat-option [value]="null">All Users</mat-option>
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="openCreateTaskDialog()">
+      <mat-icon>add</mat-icon>
+      Create Task
+    </button>
+  </div>
+
+  <!-- Loading and Error States -->
+  <div *ngIf="loading$ | async" class="loading">Loading...</div>
+  <div *ngIf="error$ | async as error" class="error">{{ error }}</div>
+
+  <!-- Board Content -->
+  <div class="board" *ngIf="lanes$ | async as lanes">
+    <div class="lane" *ngFor="let lane of lanes">
+      <h2>{{ lane.title }}</h2>
+      <div
+        class="tasks-container"
+        [id]="lane.id"
+        cdkDropList
+        [cdkDropListData]="lane.todos"
+        [cdkDropListConnectedTo]="connectedLists"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        <mat-card 
+          *ngFor="let todo of lane.todos" 
+          cdkDrag 
+          class="task-card"
+          [ngClass]="{
+            'pending': todo.status === 'Pending',
+            'in-progress': todo.status === 'In Progress',
+            'completed': todo.status === 'Completed'
+          }"
+        >
+          <mat-card-content>
+            <div class="task-header">
+              <span [ngClass]="{'completed-text': todo.completed}">{{ todo.todo }}</span>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button (click)="editTodo(todo)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteTodo(todo)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <mat-paginator
+    *ngIf="totalTodos$ | async as totalTodos"
+    [length]="totalTodos"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div> 
