@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "baseHref": "/todo-trello-board/",
-            "outputPath": "dist/trello-todo-board",
+            "outputPath": "dist/todo-trello-board",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -36,7 +36,8 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "deployUrl": "/todo-trello-board/"
           },
           "configurations": {
             "production": {
@@ -100,7 +101,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/todo-trello-board/",
+            "name": "sonia02goplani",
+            "email": "your.email@example.com"
+          }
         }
       }
     }
